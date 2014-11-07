@@ -6,16 +6,23 @@ window.onload = function(){
 	var birthday = function(date){
 		
 			var today = new Date();
-			date = new Date(date);
+			today.setHours(0,0,0,0);
 			
-			var days = 1000 * 60 * 60 * 24;
-			var daysLeft = Math.round((date.getTime() - today.getTime()) / days);
-			// console.log(birthday.getTime());
-			console.log(today.getTime());
-			console.log(daysLeft);
-			console.log(date.getTime());
-			console.log();
-			console.log();
+			date = new Date(date);
+			date.setHours(0,0,0,0);
+
+			var day = 1000 * 60 * 60 * 24;
+			date.setFullYear(today.getFullYear());
+			
+			if (date < today) {
+				date.setFullYear(today.getFullYear() + 1);
+			}
+			
+			// if date är nästa år setfullYear
+			var adjustYear = today.getFullYear() + 1;
+			console.log(adjustYear);
+			var daysLeft = Math.round((date.getTime() - today.getTime()) / day);
+			//var daysLeft = (date.getTime() - today.getTime()) / day;
 			
 			return daysLeft;
 	};
