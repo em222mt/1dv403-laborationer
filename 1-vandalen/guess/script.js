@@ -2,37 +2,36 @@
 
 window.onload = function(){
 	
-	var secret = Math.floor( Math.random() * 100)+1; // Detta tal behöver bytas ut mot ett slumpat tal.
+	var secret = Math.floor( Math.random() * 100)+1; 
 	var numberOfGuesses = 0;
 	
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var guess = function(number){
-		console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
-		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
+		console.log("Det hemliga talet: " + secret);
+		console.log("Du gissade: " + number);
 			
 		// Plats för förändring.
-		if (number < 1 || number > 100){
-			console.log("Du måste gissa på ett tal mellan 1-100!");
-		}
-		else if (number > secret){
-			numberOfGuesses=+1;
-			console.log("Talet du gissat på är för stort!");
-
-		}
-		else if (number < secret){
-			numberOfGuesses=+1;
-			console.log("Talet du gissat på är för litet!")
-			
+		if(numberOfGuesses < 7){
+	
+			if (number < 1 || number > 100){
+				return [false, "Du måste gissa på ett tal mellan 1-100!"];
+			}
+			else if (number > secret){
+				numberOfGuesses+=1;
+				return [false, "Talet du gissat på är för stort!\nÅterstående gissningar: " + (7 - numberOfGuesses)];
+			}
+			else if (number < secret){
+				numberOfGuesses+=1;
+				return [false, "Talet du gissat på är för litet!\nÅterstående gissningar: " + (7 - numberOfGuesses)];
+			}
+			else{
+				numberOfGuesses+=1;
+				return [true, "Grattis! Det hemliga talet var " + secret + " och du behövde " + numberOfGuesses + " gissningar för att hitta det." ];
+			}
 		}
 		else{
-			numberOfGuesses=+1;
-			console.log("Grattis! Det hemliga talet var" + secret + "och du behövde" + numberOfGuesses + "gissningar för att hitta det." )
+			return [false, "Fail! Det hemliga talet var " + secret + " och du klarade det inte med dina " + numberOfGuesses + " gissningar." ];
 		}
-		// Returnera exempelvis: 
-		// [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."]
-		// [false, "Det hemliga talet är högre!"]
-		// [false, "Det hemliga talet är lägre!"]
-		// [false, "Talet är utanför intervallet 0 - 100"]		
 	};
 	
 	// ------------------------------------------------------------------------------
