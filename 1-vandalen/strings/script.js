@@ -4,7 +4,30 @@ window.onload = function(){
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var convertString = function(str){
-		// Plats för förändring.		
+		// Plats för förändring.	
+		
+		str = str.split('');
+
+		var i = 0;
+
+		while(i < str.length){
+			if(str[i] === str[i].toLowerCase()){
+				console.log(str[i] + " : " + str[i].toUpperCase());
+				str[i] = str[i].toUpperCase();
+			}else if(str[i] === str[i].toUpperCase()){
+				console.log(str[i] + " : " + str[i].toLowerCase());
+				str[i] = str[i].toLowerCase();
+			}
+			if(str[i] == "a" || str[i] == "A"){
+				console.log(str[i] + " : #");
+				str[i] = "#";
+			}
+			i++;
+		}
+
+		return str.join('');
+		  
+
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 	
