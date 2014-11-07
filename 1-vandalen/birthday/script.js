@@ -5,13 +5,19 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
-
-
-			// Din kod här.
-
-
-
-
+			var today = new Date();
+			date = new Date(date);
+			
+			var days = 1000 * 60 * 60 * 24;
+			var daysLeft = Math.round((date.getTime() - today.getTime()) / days);
+			// console.log(birthday.getTime());
+			console.log(today.getTime());
+			console.log(daysLeft);
+			console.log(date.getTime());
+			console.log();
+			console.log();
+			
+			return daysLeft;
 	};
 	// ------------------------------------------------------------------------------
 
