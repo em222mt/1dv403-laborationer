@@ -20,6 +20,12 @@ var makePerson = function(persArr){
     persArr.minAge = function(ages) {
         return Math.min.apply(null, ages);
     };
+    
+    names = names.sort(function(a, b){
+    return a.localeCompare(b);
+    });
+    
+    names = names.join(", ");
 
    
 };    
