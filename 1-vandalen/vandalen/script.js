@@ -12,6 +12,15 @@ var makePerson = function(persArr){
         ages[i] = persArr[i].age;
         averageAge += persArr[i].age;
     }
+    
+    persArr.maxAge = function(ages) {
+        return Math.max.apply(null, ages);
+    };
+
+    persArr.minAge = function(ages) {
+        return Math.min.apply(null, ages);
+    };
+
    
 };    
 	
