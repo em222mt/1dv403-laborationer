@@ -22,12 +22,14 @@ var makePerson = function(persArr){
     };
     
     names = names.sort(function(a, b){
-    return a.localeCompare(b);
+        return a.localeCompare(b);
     });
     
     names = names.join(", ");
 
-   
+    averageAge = Math.round(averageAge / persArr.length);
+
+    return {averageAge: averageAge, maxAge: persArr.maxAge(ages), minAge: persArr.minAge(ages), names: names};
 };    
 	
     var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
