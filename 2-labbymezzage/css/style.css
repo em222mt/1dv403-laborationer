@@ -39,8 +39,14 @@ body{
 #messagearea {
     float: right;
     background-color: white;
-    width: 300px;
+    width: 450px;
     height: 300px;
-    margin: 10px 200px 10px 50px;;
-    
+    margin: 10px 200px 0px 50px;
+}
+#counttext{
+    float: right;
+    font-family: Comic Sans, Comic Sans MS, cursive;
+    color: #332F40; 
+    font-size: 1.2em;
+    margin-right: 475px;
 }
