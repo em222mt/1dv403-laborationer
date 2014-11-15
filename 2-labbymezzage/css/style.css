@@ -1,0 +1,46 @@
+/*Layout*/
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, main, menu, nav{
+    display: block;
+    background-color: #FC584E;
+}
+
+a:link 	    { color: black; }
+a:visited 	{ color: gray; }
+a:focus 	{ color: #838283; }
+a:hover	    { color: #6495ED; background-color: white;}
+a:active 	{ color: #FFFFFF; }
+
+/*Container*/
+
+#container {
+    max-width: 1600px;
+    overflow: auto;
+    margin: 0 auto;
+}
+h1 {
+    font-weight: bold;
+    text-align: center;
+    color: #332F40; 
+    font-size: 6em;
+    font-family: Comic Sans, Comic Sans MS, cursive;
+    text-decoration: uppercase;
+}
+#form {
+    margin: 10px 50px 10px 140px;
+    width: 700px;
+    float: left;
+}
+body{
+    background-color: #FC584E;
+}
+
+#messagearea {
+    float: right;
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    margin: 10px 200px 10px 50px;;
+    
+}
