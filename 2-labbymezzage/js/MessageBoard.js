@@ -39,14 +39,18 @@ var MessageBoard = {
     },
     // Skriv ut ett meddelande
     renderMessage: function(messageID){
-        
-        var timeContainer = document.createElement("p");
-        timeContainer.className = "timeSection";
-        timeContainer.innerHTML = MessageBoard.messages[messageID].getDateText();
+
+        var input = document.createElement("p");
+        input.className = "input";
+        input.innerHTML = MessageBoard.messages[messageID].getHTMLText();
         
         var textContainer = document.createElement("div");
-        textContainer.className = "textSection";
-        textContainer.innerHTML = MessageBoard.messages[messageID].getHTMLText();
+        textContainer.className = ("textContainer");
+        textContainer.appendChild(input);
+        
+        var time = document.createElement("p");
+        time.className = "time";
+        time.innerHTML = MessageBoard.messages[messageID].getDateText();
 		
 		var imageClock = document.createElement("a");
 		imageClock.setAttribute("href", "#");
@@ -56,16 +60,19 @@ var MessageBoard = {
 		imageRemove.setAttribute("href", "#");
 		imageRemove.innerHTML = '<img src="pics/delete.png" title="Ta bort det här meddelandet." alt="Delete" width="24px" height="24px" />';
 		
-		var links = document.createElement("div");
-		links.className = "links";
-		links.appendChild(imageClock);
-		links.appendChild(imageRemove);
-		links.appendChild(timeContainer);
-
-		textContainer.appendChild(links);
+        var detailsContainer = document.createElement("div");
+        detailsContainer.className = "detailsContainer";
+		detailsContainer.appendChild(imageClock);
+		detailsContainer.appendChild(imageRemove);
+		detailsContainer.appendChild(time);
+		
+        var messageContainer = document.createElement("div");
+        messageContainer.className = "messageContainer";
+        messageContainer.appendChild(textContainer);
+        messageContainer.appendChild(detailsContainer);
 
 		var container = document.getElementById("messagearea");
-		container.appendChild(textContainer);
+		container.appendChild(messageContainer);
 		
 		MessageBoard.countMessages();
 		
