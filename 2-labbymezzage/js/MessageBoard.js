@@ -7,12 +7,12 @@ var MessageBoard = {
     init: function(){
         // Anropar count och sätter räknaren till 0.
         MessageBoard.countMessages();
-        // Förklarar sidan funktion för användaren.
-        var textBox = document.getElementById("formtext");
-        textBox.placeholder = "Skriv in det meddelande som du vill spara. Enter sparar - shift+enter byter rad.";
         // Skapar ett meddelande då Spara-knappen klickas.
         var submit = document.getElementById("send");
         submit.onclick = MessageBoard.createMessage;
+        // Förklarar sidan funktion för användaren.
+        var textBox = document.getElementById("formtext");
+        textBox.placeholder = "Skriv in det meddelande som du vill spara. Enter sparar - shift+enter byter rad.";
         // Sätter en blinkande markör i textarean.
         textBox.focus();
         // Skapar ett meddelande då entertangenten trycks.
@@ -24,7 +24,7 @@ var MessageBoard = {
 		    }
         };
     },
-    // Skapar ett meddelande om inte rutan är tom.
+    // Skapar ett meddelandeobjekt om inte rutan är tom.
     createMessage: function(){
         if (document.getElementById("formtext").value === "") {
             return false;

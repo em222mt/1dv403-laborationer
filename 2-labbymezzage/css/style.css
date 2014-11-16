@@ -1,5 +1,5 @@
 /*Layout*/
-
+ 
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, main, menu, nav{
 
@@ -13,8 +13,11 @@ h1 {
     text-align: center;
     color: #332F40; 
     font-size: 6em;
-    font-family: Comic Sans, Comic Sans MS, cursive;
-    text-decoration: uppercase;
+    /*font-family: Comic Sans, Comic Sans MS, cursive;*/
+}
+
+#header {
+    font-family: 'Concert One', cursive;
 }
 
 body{
@@ -25,8 +28,7 @@ body{
     float: left;
     background-color: white;
     width: 450px;
-    min-height: 300px auto;
-
+    /*min-height: auto;*/
 }
 
 form{
