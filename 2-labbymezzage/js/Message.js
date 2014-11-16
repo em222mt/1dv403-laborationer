@@ -41,5 +41,10 @@ Message.prototype.getDateText = function(){
 };
 
 Message.prototype.getTimestamp = function(){
+    var date = this.getDate();
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
     
+    return "Postat den" + year + " " + month + " " + day + " " + this.getDateText();
 };
