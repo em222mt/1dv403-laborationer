@@ -62,11 +62,11 @@ var MessageBoard = {
 		
 		var imageClock = document.createElement("a");
 		imageClock.setAttribute("href", "#");
-		imageClock.innerHTML = '<img src="pics/clock.png" title="Se när meddelandet skapades." alt="Clock" width="24px" height="24px" />';
+		imageClock.innerHTML = '<img src="pics/clock.png" title="Se när meddelandet skapades." alt="Clock" />';
 
 		var imageRemove = document.createElement("a");
 		imageRemove.setAttribute("href", "#");
-		imageRemove.innerHTML = '<img src="pics/delete.png" title="Ta bort det här meddelandet." alt="Delete" width="24px" height="24px" />';
+		imageRemove.innerHTML = '<img src="pics/delete.png" title="Ta bort det här meddelandet." alt="Delete" />';
 		
         var detailsContainer = document.createElement("div");
         detailsContainer.className = "detailsContainer";
