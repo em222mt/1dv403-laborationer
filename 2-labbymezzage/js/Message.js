@@ -28,13 +28,18 @@ Message.prototype.getHTMLText = function(){
 };
 
 Message.prototype.getDateText = function(){
-    var now = new Date();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
+    var now = this.getDate();
     var seconds = now.getSeconds();
+    var minutes = now.getMinutes();
+    var hours = now.getHours();
+
     
     //IF-sats för att lägga till nollor som i C#?
     
-    var formattedTime = hours +":"+ minutes +":"+seconds;
+    var formattedTime = hours + ":" + (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
         return formattedTime;
+};
+
+Message.prototype.getTimestamp = function(){
+    
 };
