@@ -1,5 +1,5 @@
 'use strict';
-
+// Konstruktorfunktion för att skapa ett meddelandeobjekt.
 function Message(message, date){
     
     this.getText = function(){
@@ -18,28 +18,21 @@ function Message(message, date){
         date = _date;
     };
 }
-
-Message.prototype.toString = function() {
-    return this.getText()+" ("+this.getDate()+")";
-};
-
+// Hämtar texten och ersätter </br> med \n.
 Message.prototype.getHTMLText = function(){
     return this.getText().replace(/[\n\r]/g, "</br>");
 };
-
+// Hämtar tiden då ett meddelande skrevs...
 Message.prototype.getDateText = function(){
     var now = this.getDate();
     var seconds = now.getSeconds();
     var minutes = now.getMinutes();
     var hours = now.getHours();
+    //...och returnerar en formaterad sträng då sekunder och minuter är mindre än 10.
+    return hours + ":" + (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 
-    
-    //IF-sats för att lägga till nollor som i C#?
-    
-    var formattedTime = hours + ":" + (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-        return formattedTime;
 };
-
+// Hämtar en tidsstämpel med datum och tid.
 Message.prototype.getTimeDetails = function(){
     var date = this.getDate();
     var day = date.getDate();
