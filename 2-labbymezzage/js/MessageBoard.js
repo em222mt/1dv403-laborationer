@@ -5,8 +5,7 @@ var MessageBoard = {
     messages: [],
     
     init: function(){
-        // var that = this;
-        
+
         var submit = document.getElementById("send");
         submit.onclick = MessageBoard.createMessage;
         
@@ -35,7 +34,7 @@ var MessageBoard = {
         MessageBoard.renderMessage(i);
         }
         document.form.formtext.value = "";
-        focus.focus();
+        document.form.formtext.focus();
     },
     // Skriv ut ett meddelande
     renderMessage: function(messageID){
@@ -69,7 +68,7 @@ var MessageBoard = {
 		
 		MessageBoard.countMessages();
 		
-		imageRemove.onclick = function(messageID){
+		imageRemove.onclick = function(){
 		    MessageBoard.removeMessage(messageID);
 		};
 		
@@ -87,7 +86,7 @@ var MessageBoard = {
     },
     
     getTimestamp: function(messageID){
-        //Implementera i Message.js
+        alert(MessageBoard.messages[messageID].getTimeDetails());
     },
     
     // Sätter räknare för antalet meddelanden

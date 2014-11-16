@@ -40,11 +40,11 @@ Message.prototype.getDateText = function(){
         return formattedTime;
 };
 
-Message.prototype.getTimestamp = function(){
+Message.prototype.getTimeDetails = function(){
     var date = this.getDate();
     var day = date.getDate();
     var month = date.getMonth();
     var year = date.getFullYear();
     
-    return "Postat den" + year + " " + month + " " + day + " " + this.getDateText();
+    return "Postat den " + year + "/" + (month + 1) + "/" + day + " " + this.getDateText();
 };
