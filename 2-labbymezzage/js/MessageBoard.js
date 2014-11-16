@@ -15,6 +15,7 @@ var MessageBoard = {
         focus.onkeypress = function(e){
 		if(!e){ e=window.event; }
 		    if(e.keyCode == 13 && !e.shiftKey){
+		        e.preventDefault();
 		        MessageBoard.createMessage();
 		    }
         };
@@ -69,7 +70,9 @@ var MessageBoard = {
 		MessageBoard.countMessages();
 		
 		imageRemove.onclick = function(){
-		    MessageBoard.removeMessage(messageID);
+		    if (window.confirm("Vill du ta bort detta meddelande?")){
+		    MessageBoard.removeMessage(messageID);		        
+		    }
 		};
 		
 		imageClock.onclick = function(){
