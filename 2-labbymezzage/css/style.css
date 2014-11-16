@@ -39,24 +39,11 @@ form{
 #container{
     float: left;
     width: 50%;
+    height: 100%;
 }
 #container2{
     float: left;
     width: 50%;
-}
-#countDiv{
-    float: right;
-    font-family: Comic Sans, Comic Sans MS, cursive;
-    color: #332F40; 
-    font-size: 1.2em;
-    margin-right: 600px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-#counttext{
-    overflow: hidden;
-    white-space: nowrap;
 }
 
 #formtext{
@@ -96,4 +83,9 @@ form{
 
 img{
     margin-right: 5px;
+}
+
+#counterDiv{
+    float: right;
+    margin-right: 42%;
 }

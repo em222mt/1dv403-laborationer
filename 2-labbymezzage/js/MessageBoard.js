@@ -104,7 +104,7 @@ var MessageBoard = {
     // Sätter räknare för antalet meddelanden
     countMessages: function(){
         var counter = document.getElementById("counter");
-        counter.innerHTML = MessageBoard.messages.length;
+        counter.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
     }
     
 };
