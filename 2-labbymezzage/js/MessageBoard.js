@@ -5,7 +5,9 @@ var MessageBoard = {
     messages: [],
     
     init: function(){
-
+        
+        MessageBoard.countMessages();
+        
         var submit = document.getElementById("send");
         submit.onclick = MessageBoard.createMessage;
         

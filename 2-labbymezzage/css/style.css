@@ -2,23 +2,12 @@
 
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, main, menu, nav{
-    display: block;
-    background-color: #FC584E;
-}
 
-a:link 	    { color: black; }
-a:visited 	{ color: gray; }
-a:focus 	{ color: #838283; }
-a:hover	    { color: #6495ED; background-color: white;}
-a:active 	{ color: #FFFFFF; }
+    background-color: #E8EADD;
+}
 
 /*Container*/
 
-#container {
-    max-width: 1600px;
-    overflow: auto;
-    margin: 0 auto;
-}
 h1 {
     font-weight: bold;
     text-align: center;
@@ -27,26 +16,84 @@ h1 {
     font-family: Comic Sans, Comic Sans MS, cursive;
     text-decoration: uppercase;
 }
-#form {
-    margin: 10px 50px 10px 140px;
-    width: 700px;
-    float: left;
-}
+
 body{
-    background-color: #FC584E;
+    background-color: #E8EADD;
 }
 
 #messagearea {
-    float: right;
+    float: left;
     background-color: white;
     width: 450px;
-    height: 300px;
-    margin: 10px 200px 0px 50px;
+    min-height: 300px auto;
+
 }
-#counttext{
+
+form{
+    max-width: 50%;
+}
+#mainsection{
+    max-width: 50%;
+    margin: 0px 0px 0px 400px;
+}
+#container{
+    float: left;
+    width: 50%;
+}
+#container2{
+    float: left;
+    width: 50%;
+}
+#countDiv{
     float: right;
     font-family: Comic Sans, Comic Sans MS, cursive;
     color: #332F40; 
     font-size: 1.2em;
-    margin-right: 475px;
+    margin-right: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#counttext{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#formtext{
+    font-size: 2em;
+}
+
+.messageContainer{
+    width: 98%;
+    float: left;
+    background-color: #A8C4B4;
+    border: 1px solid black;
+    margin: 3px 3px 3px 3px;
+}
+
+.textContainer{
+    width: 85%;
+    float: left;
+    font-size: 1.2em;
+}
+
+.time{
+    text-indent: 13px;
+}
+
+.detailsContainer{
+    width: 15%;
+    float: left;
+    text-indent: 8px;
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+.input{
+    max-width: 85%;
+    word-break: break-all;
+    margin-left: 10px;
+}
+
+img{
+    margin-right: 5px;
 }
