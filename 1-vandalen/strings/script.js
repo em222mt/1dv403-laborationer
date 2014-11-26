@@ -2,9 +2,8 @@
 
 window.onload = function(){
 
-	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var convertString = function(str){
-		
+		// Kasta ett fel om strängen är tom
 		if (str === " ") {
 			throw new Error("Du måste mata in en textsträng!");
 		}
@@ -16,7 +15,7 @@ window.onload = function(){
 		for (i = 0; i < str.length; i+=1) {
 			
 			var char = str[i];
-
+			// Vänder på gemener och versaler och lägger varje bokstav i ny sträng.
 			if (str[i] === char.toUpperCase()){
 				newString += str[i].toLowerCase();
 			}
@@ -24,6 +23,7 @@ window.onload = function(){
 				newString += str[i].toUpperCase();
 			}
 		}
+		// Returnerar den nya strängen och byter ut a och A mot #.
 		return newString.replace(/a/gi, "#");
 	};
 	// ------------------------------------------------------------------------------

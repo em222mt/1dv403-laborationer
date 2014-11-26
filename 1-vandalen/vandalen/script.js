@@ -1,7 +1,7 @@
 "use strict";
 
 var makePerson = function(persArr){
-
+    
     var i = 0;
     var averageAge = 0;
     var ages = [];
@@ -16,7 +16,7 @@ var makePerson = function(persArr){
     persArr.maxAge = function(ages) {
         return Math.max.apply(null, ages);
     };
-
+    
     persArr.minAge = function(ages) {
         return Math.min.apply(null, ages);
     };

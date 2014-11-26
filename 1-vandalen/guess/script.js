@@ -1,16 +1,14 @@
 "use strict";
 
 window.onload = function(){
-	
+	// Sätter secret till ett tal mellan 1-100
 	var secret = Math.floor( Math.random() * 100)+1; 
 	var numberOfGuesses = 0;
 	
-	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var guess = function(number){
 		console.log("Det hemliga talet: " + secret);
 		console.log("Du gissade: " + number);
-			
-		// Plats för förändring.
+
 		if(numberOfGuesses < 7){
 	
 			if (number < 1 || number > 100){

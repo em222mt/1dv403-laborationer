@@ -10,7 +10,7 @@ window.onload = function(){
 			if(!ex.test(date)){
 			throw new SyntaxError("Datumet har fel format! Ange ett datum enligt YYYY-MM-DD.");
 			}
-			
+			// Sätter timmar till noll för att datumet ska bli rätt efter 12:00
 			var today = new Date();
 			today.setHours(0,0,0,0);
 			
@@ -18,7 +18,7 @@ window.onload = function(){
 			date.setHours(0,0,0,0);
 			
 			date.setFullYear(today.getFullYear());
-			
+			// Plussar på ett år om datumet redan varit i år.
 			if (date < today) {
 				date.setFullYear(today.getFullYear() + 1);
 			}

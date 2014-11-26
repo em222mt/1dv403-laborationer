@@ -6,14 +6,13 @@ footer, header, hgroup, main, menu, nav{
     background-color: #E8EADD;
 }
 
-/*Container*/
-
 h1 {
     font-weight: bold;
     text-align: center;
     color: #332F40; 
     font-size: 6em;
     /*font-family: Comic Sans, Comic Sans MS, cursive;*/
+    font-family: 'Concert One', cursive;
 }
 
 #header {
