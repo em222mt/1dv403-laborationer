@@ -49,10 +49,44 @@ var Memory = {
     },
 
     flipBricks: function(count, link){
-
+        //Gör länkarna klickbara
+        link.addEventListener("click", function(){    
+        //Lägger till ett element i arrayen
+        Memory.countArray.push(link);
+        
+            //Byter bild om kraven uppfylls
+            if (Memory.countArray.length === 1 || Memory.countArray.length === 2){
+                this.getElementsByTagName("img")[0].setAttribute("src", "memory/pics/" + Memory.board[count] + ".png");
+            }
+            //Byter tillbaka bilder med ett kort delay
+            if(Memory.countArray.length === 2){
+                setTimeout(function() {
+                    Memory.countParameters(Memory.countArray);
+                }, 750);
+            }
+        });
     },
     //Håller reda på räknare och skriver ut resultat vid vinst
-    countParameters: function(){
+    countParameters: function(array){
+                //Om de klickade bilderna är ett par, lämna dom "flippade"...
+        if (array[0].getElementsByTagName("img")[0].getAttribute("src") === array[1].getElementsByTagName("img")[0].getAttribute("src")){
+            Memory.pairs += 1;
+            Memory.tries += 1;
+            //Vinstparametrar
+            if (Memory.pairs === (Memory.cols*Memory.rows) / 2) {
+                var result = document.getElementById("result");
+                result.innerHTML = "Grattis! Du vann och behövde " + Memory.tries + " försök";
+            }
+        //...annars vänd tillbaka dom    
+        }
+        else{
+            array[0].getElementsByTagName("img")[0].setAttribute("src", "memory/pics/0.png");
+            array[1].getElementsByTagName("img")[0].setAttribute("src", "memory/pics/0.png");
+            
+            Memory.tries += 1;
+        }
+        //Tömmer array
+        Memory.countArray = [];
     }
 };
 
