@@ -1,4 +1,5 @@
 'use strict';
+/*global RandomGenerator*/
 
 var Memory = {
     
@@ -50,13 +51,15 @@ var Memory = {
 
     flipBricks: function(count, link){
         //Gör länkarna klickbara
-        link.addEventListener("click", function(){    
-        //Lägger till ett element i arrayen
-        Memory.countArray.push(link);
+        link.addEventListener("click", function(){ 
+
+            //Lägger till ett element i arrayen
+            Memory.countArray.push(link);
         
             //Byter bild om kraven uppfylls
             if (Memory.countArray.length === 1 || Memory.countArray.length === 2){
-                this.getElementsByTagName("img")[0].setAttribute("src", "memory/pics/" + Memory.board[count] + ".png");
+                console.log(this);
+                link.getElementsByTagName("img")[0].setAttribute("src", "memory/pics/" + Memory.board[count] + ".png");
             }
             //Byter tillbaka bilder med ett kort delay
             if(Memory.countArray.length === 2){
@@ -68,7 +71,7 @@ var Memory = {
     },
     //Håller reda på räknare och skriver ut resultat vid vinst
     countParameters: function(array){
-                //Om de klickade bilderna är ett par, lämna dom "flippade"...
+        //Om de klickade bilderna är ett par, lämna dom "flippade"...
         if (array[0].getElementsByTagName("img")[0].getAttribute("src") === array[1].getElementsByTagName("img")[0].getAttribute("src")){
             Memory.pairs += 1;
             Memory.tries += 1;

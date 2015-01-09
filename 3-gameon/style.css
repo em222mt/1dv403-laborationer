@@ -9,12 +9,6 @@ body{
     margin: 0 auto;
 }
 
-td{
-    height: 50px;
-}
-#wrapboard > table > tr > td{
-    height: 50px;
-}
 table{
     overflow: auto;
     margin: 0 auto;
@@ -25,7 +19,7 @@ table{
 
 img{
     border-radius: 100px;
-    box-shadow: 10px 10px 10px black;
+    box-shadow: 5px 5px 5px black;
     width: 40px;
     margin-right: 28px;
 }
@@ -42,6 +36,4 @@ h4 {
     bottom: 200px;
     left: 20px;
     font-family: Tahoma, Geneva, sans-serif;
-    /*font-size: 1.1em;*/
-    
 }
