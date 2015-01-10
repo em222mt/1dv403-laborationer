@@ -3,78 +3,110 @@
 var Project = {
     //Array för bilder
     pics: [],
-    
+    //Sparade DOM-anrop
+    desktop: 0,
+    gallery: 0,
+    topBar: 0,
+    bottomBar: 0,
+    closeImage: 0,
+    closeIcon: 0,
+    box: 0,
+    thumbNail: 0,
+    thumbLink: 0,
     
     init: function(){
         Project.createGallery();
         Project.getImages();
-        console.log(Project.pics);
+
+        Project.closeIcon.onclick = function(){
+            var d = document.getElementById("desktop");
+            Project.removeNodes(d);
+        };
+        
+
 
     },
     //Skapar bildgalleriet
     createGallery: function(){
+        Project.body = document.getElementById("desktop");
         
-        var gallery = document.createElement("div");
-        gallery.setAttribute("class", "gallery");
-        gallery.setAttribute("id", "gallery");
+        Project.gallery = document.createElement("div");
+        Project.gallery.setAttribute("class", "gallery");
+        Project.gallery.setAttribute("id", "gallery");
         
-        var topBar = document.createElement("div");
-        topBar.setAttribute("class", "topbar");
-        topBar.setAttribute("id", "topbar");
-        var closeImage = document.createElement("img");
-        closeImage.setAttribute("src", "pics/close.png");
-        closeImage.setAttribute("id", "closeimage");
-        var closeIcon = document.createElement("a");
-        closeIcon.setAttribute("class", "closeicon");
-        closeIcon.setAttribute("href", "#");
-        closeIcon.appendChild(closeImage);
-        topBar.appendChild(closeIcon);
+        Project.topBar = document.createElement("div");
+        Project.topBar.setAttribute("class", "topbar");
+        Project.topBar.setAttribute("id", "topbar");
         
-        var bottomBar = document.createElement("div");
-        bottomBar.setAttribute("class", "bottombar");
-        bottomBar.setAttribute("id", "bottombar");
+        Project.closeImage = document.createElement("img");
+        Project.closeImage.setAttribute("src", "pics/close.png");
+        Project.closeImage.setAttribute("id", "closeimage");
         
-        var body = document.getElementById("desktop");
-        body.appendChild(topBar);
-        body.appendChild(gallery);
-        body.appendChild(bottomBar);
+        Project.closeIcon = document.createElement("a");
+        Project.closeIcon.setAttribute("class", "closeicon");
+        Project.closeIcon.setAttribute("href", "#");
+        Project.closeIcon.appendChild(Project.closeImage);
+        
+        Project.topBar.appendChild(Project.closeIcon);
+        
+        Project.bottomBar = document.createElement("div");
+        Project.bottomBar.setAttribute("class", "bottombar");
+        Project.bottomBar.setAttribute("id", "bottombar");
+
+        Project.body.appendChild(Project.topBar);
+        Project.body.appendChild(Project.gallery);
+        Project.body.appendChild(Project.bottomBar);
         console.log("hej");
         
     },
     //Hämtar bilder och lägger dom i picssarrayen
     getImages: function(){
+        //Skapar laddningsbar
         Project.createLoadingBar();
+        //Gör ett ett AJAX-anrop
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if (xhr.readyState === 4) {
                 if (xhr.status == 200) {
                     Project.pics = JSON.parse(xhr.responseText);
+                    console.log(xhr.responseText);
                     
                     //Skapar struktur för thumbnails
-                    for (var i = 0; i < Project.pics.length; i+=1) {
+                    Project.pics.forEach(function(pic){
                         console.log("hej igen");
-                        var box = document.createElement("div");
-                        box.setAttribute("class", "box");
+                        Project.box = document.createElement("div");
+                        Project.box.setAttribute("class", "box");
                         
-                        var thumbNail = document.createElement("img");
-                        thumbNail.setAttribute("src", Project.pics[i].thumbURL);
-                        thumbNail.setAttribute("class", "thumb");
-                        thumbNail.style.maxWidth = Project.pics[i].thumbWidth;
-                        thumbNail.style.maxHeight = Project.pics[i].thumbHeight;
+                        Project.thumbNail = document.createElement("img");
+                        Project.thumbNail.setAttribute("src", pic.thumbURL);
+                        Project.thumbNail.setAttribute("class", "thumb");
+                        Project.thumbNail.style.maxWidth = pic.thumbWidth;
+                        Project.thumbNail.style.maxHeight = pic.thumbHeight;
                         
-                        var thumbLink = document.createElement("a");
-                        thumbLink.setAttribute("href", "#");
-                        thumbLink.setAttribute("class", "thumblink");
+                        Project.thumbLink = document.createElement("a");
+                        Project.thumbLink.setAttribute("href", "#");
+                        Project.thumbLink.setAttribute("class", "thumblink");
                         
-                        thumbLink.appendChild(thumbNail);
-                        box.appendChild(thumbLink);
+                        Project.thumbLink.appendChild(Project.thumbNail);
+                        Project.box.appendChild(Project.thumbLink);
                         
-                        var temp = document.getElementById("gallery");
-                        temp.appendChild(box);
-                    }
-                    Project.removeLoadingBar();
+                        Project.gallery.appendChild(Project.box);
+                        
+                        Project.thumbNail.onclick = function(e){
+                            console.log(e);
+                            e.preventDefault();
+                            
+                            var background = document.getElementById("background");
+                            background.style.backgroundImage = pic.URL;
+                            
+                        };
+                        
+                    });
+
+                    //Tar bort laddningsbar
+                    Project.removeNodes(Project.bottomBar);
                 }
-                
+                //Ger en alertruta om AJAX-anropet misslyckas.
                 else{
                     alert("Läsfel status: " + xhr.status);
                 }
@@ -83,9 +115,8 @@ var Project = {
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
     },
-    
+    //Skapar en laddningsbar
     createLoadingBar: function(){
-        var bottom = document.getElementById("bottombar");
             
         var loadingGif = document.createElement("img");
         loadingGif.setAttribute("src", "pics/loader.gif");
@@ -95,21 +126,15 @@ var Project = {
         loadingText.setAttribute("id", "loadingtext");
         loadingText.innerHTML = "Laddar bilder...";
         
-        bottom.appendChild(loadingText);
-        bottom.appendChild(loadingGif);
+        Project.bottomBar.appendChild(loadingText);
+        Project.bottomBar.appendChild(loadingGif);
     },
-    
-    removeLoadingBar: function(){
-        var bottom = document.getElementById("bottombar");
-        // setTimeout(function(){ 
-            while (bottom.firstChild) {
-                bottom.removeChild(bottom.firstChild);
+    //Tömmer noder
+    removeNodes: function(param){
+
+            while (param.firstChild) {
+                param.removeChild(param.firstChild);
             }
-            // }, 2000);
-        // while (bottom.firstChild) {
-        //     bottom.removeChild(bottom.firstChild);
-        
-        
     },
     
 };
