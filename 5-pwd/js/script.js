@@ -7,12 +7,13 @@ var Project = {
     init: function(){
         Project.createGallery();
         Project.getImages();
+        console.log(Project.pics);
     },
     //Skapar bildgalleriet
     createGallery: function(){
-        var wrapper = document.createElement("div");
-        wrapper.setAttribute("class", "wrapper");
-        wrapper.setAttribute("id", "wrapper");
+        // var wrapper = document.createElement("div");
+        // wrapper.setAttribute("class", "wrapper");
+        // wrapper.setAttribute("id", "wrapper");
         
         var gallery = document.createElement("div");
         gallery.setAttribute("class", "gallery");
@@ -21,15 +22,28 @@ var Project = {
         var topBar = document.createElement("div");
         topBar.setAttribute("class", "topbar");
         topBar.setAttribute("id", "topbar");
+        var closeImage = document.createElement("img");
+        closeImage.setAttribute("src", "pics/close.png");
+        closeImage.setAttribute("id", "closeimage");
+        var closeIcon = document.createElement("a");
+        closeIcon.setAttribute("class", "closeicon");
+        closeIcon.setAttribute("href", "#");
+        closeIcon.appendChild(closeImage);
+        topBar.appendChild(closeIcon);
         
         var bottomBar = document.createElement("div");
         bottomBar.setAttribute("class", "bottombar");
         bottomBar.setAttribute("id", "bottombar");
         
-        wrapper.appendChild(topBar, gallery, bottomBar);
+        // wrapper.appendChild(topBar);
+        // wrapper.appendChild(gallery);
+        // wrapper.appendChild(bottomBar);
         
-        var body = document.getElementById("background");
-        body.appendChild(wrapper);
+        var body = document.getElementById("desktop");
+        body.appendChild(topBar);
+        body.appendChild(gallery);
+        body.appendChild(bottomBar);
+        console.log("hej");
         
     },
     //Hämtar bilder och lägger dom i picssarrayen
@@ -42,22 +56,25 @@ var Project = {
                     
                     //Skapar struktur för thumbnails
                     for (var i = 0; i < Project.pics.length; i+=1) {
+                        console.log("hej igen");
                         var box = document.createElement("div");
                         box.setAttribute("class", "box");
                         
                         var thumbNail = document.createElement("img");
-                        thumbNail.setAttribute("src", Project.pics[i]);
+                        thumbNail.setAttribute("src", Project.pics[i].thumbURL);
+                        thumbNail.setAttribute("class", "thumb");
                         thumbNail.style.maxWidth = Project.pics[i].thumbWidth;
                         thumbNail.style.maxHeight = Project.pics[i].thumbHeight;
                         
                         var thumbLink = document.createElement("a");
                         thumbLink.setAttribute("href", "#");
+                        thumbLink.setAttribute("class", "thumblink");
                         
                         thumbLink.appendChild(thumbNail);
                         box.appendChild(thumbLink);
                         
-                        var gallery = document.getElementById("gallery");
-                        gallery.appendChild(box);
+                        var temp = document.getElementById("gallery");
+                        temp.appendChild(box);
                         
                     }
                 }
