@@ -4,16 +4,15 @@ var Project = {
     //Array för bilder
     pics: [],
     
+    
     init: function(){
         Project.createGallery();
         Project.getImages();
         console.log(Project.pics);
+
     },
     //Skapar bildgalleriet
     createGallery: function(){
-        // var wrapper = document.createElement("div");
-        // wrapper.setAttribute("class", "wrapper");
-        // wrapper.setAttribute("id", "wrapper");
         
         var gallery = document.createElement("div");
         gallery.setAttribute("class", "gallery");
@@ -35,10 +34,6 @@ var Project = {
         bottomBar.setAttribute("class", "bottombar");
         bottomBar.setAttribute("id", "bottombar");
         
-        // wrapper.appendChild(topBar);
-        // wrapper.appendChild(gallery);
-        // wrapper.appendChild(bottomBar);
-        
         var body = document.getElementById("desktop");
         body.appendChild(topBar);
         body.appendChild(gallery);
@@ -48,6 +43,7 @@ var Project = {
     },
     //Hämtar bilder och lägger dom i picssarrayen
     getImages: function(){
+        Project.createLoadingBar();
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if (xhr.readyState === 4) {
@@ -75,15 +71,44 @@ var Project = {
                         
                         var temp = document.getElementById("gallery");
                         temp.appendChild(box);
-                        
                     }
+                    Project.removeLoadingBar();
+                }
+                
+                else{
+                    alert("Läsfel status: " + xhr.status);
                 }
             }
         };
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
     },
-    renderImages: function(){
+    
+    createLoadingBar: function(){
+        var bottom = document.getElementById("bottombar");
+            
+        var loadingGif = document.createElement("img");
+        loadingGif.setAttribute("src", "pics/loader.gif");
+        loadingGif.setAttribute("id", "loadinggif");
+        
+        var loadingText = document.createElement("p");
+        loadingText.setAttribute("id", "loadingtext");
+        loadingText.innerHTML = "Laddar bilder...";
+        
+        bottom.appendChild(loadingText);
+        bottom.appendChild(loadingGif);
+    },
+    
+    removeLoadingBar: function(){
+        var bottom = document.getElementById("bottombar");
+        // setTimeout(function(){ 
+            while (bottom.firstChild) {
+                bottom.removeChild(bottom.firstChild);
+            }
+            // }, 2000);
+        // while (bottom.firstChild) {
+        //     bottom.removeChild(bottom.firstChild);
+        
         
     },
     
