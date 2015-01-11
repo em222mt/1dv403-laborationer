@@ -51,9 +51,11 @@
 #desktop{
     width: 250px;
     height: 400px;
+    position: fixed;
     left: 50px;
     top: 50px;
     border-radius: 5px;
+
 }
 #galleryicon{
     height: 64px;
@@ -72,9 +74,13 @@
 .thumb{
    margin-top: 2px;
 }
+#closeicon{
+    width: 18px;
+    height: 18px;
+    float: right;
+}
 #closeimage{
-    width: 20px;
-    height: 20px;
+    width: 18px;
     float: right;
     margin: 2px 2px 0 0;
 }
@@ -87,6 +93,21 @@
     height: 24px;
     font-size: 0.6em;
     margin: 5px 0 0 5px;
+}
+#topbartext{
+    height: 20px;
+    font-size: 0.6em;
+    margin: 5px 0 0 5px;
+    font-family: Geneva,Tahoma,Verdana,sans-serif;
+    font-weight: bold;
+    color: #f05b4a;
+    width: 50%;
+    float:left;
+}
+#topbaricon{
+    width: 18px;
+    float: left;
+    margin: 2px 0 0 3px;
 }
 .thumblink{
     height: 50;

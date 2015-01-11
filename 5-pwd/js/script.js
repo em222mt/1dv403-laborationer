@@ -4,23 +4,42 @@ var Project = {
     //Array för bilder
     pics: [],
     //Sparade DOM-anrop
+    open: false,
     desktop: 0,
     gallery: 0,
     topBar: 0,
+    topBarIcon: 0,
+    topBarIconLink: 0,
+    topBarText: 0,
     bottomBar: 0,
     closeImage: 0,
     closeIcon: 0,
     box: 0,
     thumbNail: 0,
     thumbLink: 0,
+    galleryIcon: document.getElementById("galleryicon"),
     
     init: function(){
-        Project.createGallery();
-        Project.getImages();
 
-        Project.closeIcon.onclick = function(){
-            var d = document.getElementById("desktop");
-            Project.removeNodes(d);
+        Project.galleryIcon.onclick = function(){
+
+
+            if (Project.open === false && !desktop.firstChild) {
+                Project.open = true;
+                console.log(Project.open);
+                Project.createGallery();
+                Project.getImages();
+            }
+            else{
+                console.log("false");
+                return false;
+            }
+            var desktop = document.getElementById("desktop");                    
+            Project.closeIcon.onclick = function(){
+                Project.removeNodes(desktop);
+            };  
+
+
         };
     },
     //Skapar bildgalleriet
@@ -34,10 +53,22 @@ var Project = {
         Project.topBar = document.createElement("div");
         Project.topBar.setAttribute("class", "topbar");
         Project.topBar.setAttribute("id", "topbar");
+        Project.topBarIcon = document.createElement("img");
+        Project.topBarIcon.setAttribute("src", "pics/Imageviewer.png");
+        Project.topBarIcon.setAttribute("id", "topbaricon");
+        Project.topBarIconLink = document.createElement("a");
+        Project.topBarIconLink.setAttribute("href", "#");
+        Project.topBarText = document.createElement("p");
+        Project.topBarText.setAttribute("id", "topbartext");
+        Project.topBarText.innerHTML = "ImageViewer";
+        Project.topBarIconLink.appendChild(Project.topBarIcon);
+        Project.topBar.appendChild(Project.topBarIconLink);
+        Project.topBar.appendChild(Project.topBarText);
         
         Project.closeImage = document.createElement("img");
         Project.closeImage.setAttribute("src", "pics/close.png");
         Project.closeImage.setAttribute("id", "closeimage");
+        Project.closeImage.setAttribute("alt", "Close window.");
         
         Project.closeIcon = document.createElement("a");
         Project.closeIcon.setAttribute("class", "closeicon");
@@ -85,10 +116,9 @@ var Project = {
                         Project.box.appendChild(Project.thumbLink);
                         
                         Project.gallery.appendChild(Project.box);
-
+                        //Sätter bakgrundsbilden till den klickade thumben.
                         Project.thumbLink.onclick = function(){
                             var link = pic.URL;
-
                             var background = document.getElementById("background");
                             background.style.backgroundImage = "url(" + link + ")";
                         };
@@ -123,6 +153,7 @@ var Project = {
     removeNodes: function(param){
         while (param.firstChild) {
             param.removeChild(param.firstChild);
+            Project.open = false;
         }
     },
 };
