@@ -22,9 +22,6 @@ var Project = {
             var d = document.getElementById("desktop");
             Project.removeNodes(d);
         };
-        
-
-
     },
     //Skapar bildgalleriet
     createGallery: function(){
@@ -56,8 +53,6 @@ var Project = {
         Project.body.appendChild(Project.topBar);
         Project.body.appendChild(Project.gallery);
         Project.body.appendChild(Project.bottomBar);
-        console.log("hej");
-        
     },
     //Hämtar bilder och lägger dom i picssarrayen
     getImages: function(){
@@ -69,11 +64,10 @@ var Project = {
             if (xhr.readyState === 4) {
                 if (xhr.status == 200) {
                     Project.pics = JSON.parse(xhr.responseText);
-                    console.log(xhr.responseText);
+                    // console.log(xhr.responseText);
                     
                     //Skapar struktur för thumbnails
                     Project.pics.forEach(function(pic){
-                        console.log("hej igen");
                         Project.box = document.createElement("div");
                         Project.box.setAttribute("class", "box");
                         
@@ -91,18 +85,14 @@ var Project = {
                         Project.box.appendChild(Project.thumbLink);
                         
                         Project.gallery.appendChild(Project.box);
-                        
-                        Project.thumbNail.onclick = function(e){
-                            console.log(e);
-                            e.preventDefault();
-                            
-                            var background = document.getElementById("background");
-                            background.style.backgroundImage = pic.URL;
-                            
-                        };
-                        
-                    });
 
+                        Project.thumbLink.onclick = function(){
+                            var link = pic.URL;
+
+                            var background = document.getElementById("background");
+                            background.style.backgroundImage = "url(" + link + ")";
+                        };
+                    });
                     //Tar bort laddningsbar
                     Project.removeNodes(Project.bottomBar);
                 }
@@ -131,11 +121,9 @@ var Project = {
     },
     //Tömmer noder
     removeNodes: function(param){
-
-            while (param.firstChild) {
-                param.removeChild(param.firstChild);
-            }
+        while (param.firstChild) {
+            param.removeChild(param.firstChild);
+        }
     },
-    
 };
 window.onload = Project.init;
