@@ -20,27 +20,27 @@ var Project = {
     galleryIcon: document.getElementById("galleryicon"),
     
     init: function(){
-
-        Project.galleryIcon.onclick = function(){
-
-
-            if (Project.open === false && !desktop.firstChild) {
+        if (Project.open === false) {
+            Project.galleryIcon.onclick = function(){
+                console.log("test");
                 Project.open = true;
-                console.log(Project.open);
+    
                 Project.createGallery();
                 Project.getImages();
-            }
-            else{
-                console.log("false");
-                return false;
-            }
-            var desktop = document.getElementById("desktop");                    
-            Project.closeIcon.onclick = function(){
-                Project.removeNodes(desktop);
-            };  
+    
+                var desktop = document.getElementById("desktop");                    
+                Project.closeIcon.onclick = function(){
+                    Project.removeNodes(desktop);
+                };
+            
+            };    
+            console.log("1"); 
+            
+        }
+        else{
+            console.log("else");
+        }
 
-
-        };
     },
     //Skapar bildgalleriet
     createGallery: function(){
@@ -118,9 +118,7 @@ var Project = {
                         Project.gallery.appendChild(Project.box);
                         //Sätter bakgrundsbilden till den klickade thumben.
                         Project.thumbLink.onclick = function(){
-                            var link = pic.URL;
-                            var background = document.getElementById("background");
-                            background.style.backgroundImage = "url(" + link + ")";
+                            Project.setBackground(pic.URL);
                         };
                     });
                     //Tar bort laddningsbar
@@ -135,9 +133,13 @@ var Project = {
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
     },
+    //Sätter bakgrundsbild
+    setBackground: function(link){
+        var background = document.getElementById("background");
+        background.style.backgroundImage = "url(" + link + ")";
+    },
     //Skapar en laddningsbar
     createLoadingBar: function(){
-            
         var loadingGif = document.createElement("img");
         loadingGif.setAttribute("src", "pics/loader.gif");
         loadingGif.setAttribute("id", "loadinggif");
@@ -153,7 +155,10 @@ var Project = {
     removeNodes: function(param){
         while (param.firstChild) {
             param.removeChild(param.firstChild);
+
             Project.open = false;
+
+            
         }
     },
 };
