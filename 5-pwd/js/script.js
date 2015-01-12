@@ -5,46 +5,44 @@ var Project = {
     pics: [],
     //Sparade DOM-anrop
     open: false,
-    desktop: 0,
-    gallery: 0,
-    topBar: 0,
-    topBarIcon: 0,
+    desktop:        0,
+    gallery:        0,
+    topBar:         0,
+    topBarIcon:     0,
     topBarIconLink: 0,
-    topBarText: 0,
-    bottomBar: 0,
-    closeImage: 0,
-    closeIcon: 0,
-    box: 0,
-    thumbNail: 0,
-    thumbLink: 0,
+    topBarText:     0,
+    bottomBar:      0,
+    closeImage:     0,
+    closeIcon:      0,
+    box:            0,
+    thumbNail:      0,
+    thumbLink:      0,
     galleryIcon: document.getElementById("galleryicon"),
     
     init: function(){
-        if (Project.open === false) {
-            Project.galleryIcon.onclick = function(){
-                console.log("test");
+        //Sätter onclickfunktion på galleriikonen
+        Project.galleryIcon.onclick = function(){
+            //Förhindrar att ett nytt fönster öppnas om ett redan är öppet
+            if (Project.open === true) { 
+                return false;
+            }
+            //Öppnar ett nytt galleri
+            else{
                 Project.open = true;
-    
                 Project.createGallery();
                 Project.getImages();
-    
+                //Stänger galleri vid klick
                 var desktop = document.getElementById("desktop");                    
-                Project.closeIcon.onclick = function(){
-                    Project.removeNodes(desktop);
-                };
-            
-            };    
-            console.log("1"); 
-            
-        }
-        else{
-            console.log("else");
-        }
-
+                    Project.closeIcon.onclick = function(){
+                        Project.removeNodes(desktop);
+                    };
+            }
+            return false;
+        };
     },
     //Skapar bildgalleriet
     createGallery: function(){
-        Project.body = document.getElementById("desktop");
+        Project.desktop = document.getElementById("desktop");
         
         Project.gallery = document.createElement("div");
         Project.gallery.setAttribute("class", "gallery");
@@ -81,9 +79,9 @@ var Project = {
         Project.bottomBar.setAttribute("class", "bottombar");
         Project.bottomBar.setAttribute("id", "bottombar");
 
-        Project.body.appendChild(Project.topBar);
-        Project.body.appendChild(Project.gallery);
-        Project.body.appendChild(Project.bottomBar);
+        Project.desktop.appendChild(Project.topBar);
+        Project.desktop.appendChild(Project.gallery);
+        Project.desktop.appendChild(Project.bottomBar);
     },
     //Hämtar bilder och lägger dom i picssarrayen
     getImages: function(){
@@ -95,8 +93,6 @@ var Project = {
             if (xhr.readyState === 4) {
                 if (xhr.status == 200) {
                     Project.pics = JSON.parse(xhr.responseText);
-                    // console.log(xhr.responseText);
-                    
                     //Skapar struktur för thumbnails
                     Project.pics.forEach(function(pic){
                         Project.box = document.createElement("div");
@@ -132,6 +128,7 @@ var Project = {
         };
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
+        
     },
     //Sätter bakgrundsbild
     setBackground: function(link){
@@ -153,12 +150,13 @@ var Project = {
     },
     //Tömmer noder
     removeNodes: function(param){
+        //Switchar Project.open beroende på state
+        if (Project.open === true && param == Project.desktop) {
+            Project.open = false;
+        }
+        //Tar bort barnnoder om barnnoder finns.
         while (param.firstChild) {
             param.removeChild(param.firstChild);
-
-            Project.open = false;
-
-            
         }
     },
 };
