@@ -2,20 +2,20 @@
     overflow: auto;
     margin: 0 auto;
     background-color: black;
+    min-height: 900px;
+    max-width: 1024px;
+}
+#wrapper{
     background-image: url(../pics/background.jpg);
-    background-repeat: no-repeat;
+    min-height: 900px;
+    max-width: 1024px;
+    background-repeat: repeat;
     background-position: center;
     background-attachment: fixed;
-    background-size: cover;
-    min-height: 100%;
-    min-width: 100%;
-    
 }
 
-/*gif color #9E9479*/
-
 #menu{
-    width: 100%;
+    width: 1024px;
     height: 68px;
     position: fixed;
     bottom: 0;
@@ -57,10 +57,10 @@
     background-color: white;
 }
 #desktop{
-    width: 250px;
+    width: 300px;
     height: 400px;
     position: fixed;
-    left: 50px;
+    left: 350px;
     top: 50px;
     border-radius: 5px;
 
@@ -68,12 +68,14 @@
 #galleryicon{
     height: 64px;
     width: 64px;
+    
 }
 #galleryimage{
     height: 56px;
     width: 56px;
     margin: 4px 0 0 4px;
 }
+#galleryimage:hover{ transform: scale(1.05); }
 
 .box{
     width: 80px;
@@ -121,10 +123,6 @@
     width: 18px;
     float: left;
     margin: 2px 0 0 3px;
-}
-.thumblink{
-    height: 50;
-    size: inherit;
 }
 
 

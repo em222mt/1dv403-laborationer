@@ -92,6 +92,7 @@ var Project = {
         xhr.onreadystatechange = function(){
             if (xhr.readyState === 4) {
                 if (xhr.status == 200) {
+                    console.log(xhr.responseText);
                     Project.pics = JSON.parse(xhr.responseText);
                     //Skapar struktur för thumbnails
                     Project.pics.forEach(function(pic){
@@ -128,11 +129,10 @@ var Project = {
         };
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
-        
     },
     //Sätter bakgrundsbild
     setBackground: function(link){
-        var background = document.getElementById("background");
+        var background = document.getElementById("wrapper");
         background.style.backgroundImage = "url(" + link + ")";
     },
     //Skapar en laddningsbar
