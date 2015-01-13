@@ -1,3 +1,4 @@
+/*HTML*/
 #background{
     overflow: auto;
     margin: 0 auto;
@@ -23,7 +24,23 @@
     background: rgba(255, 255, 255, 0.3);
     border-top: 5px solid black;
 }
-
+#galleryicon{
+    height: 64px;
+    width: 64px;
+}
+#galleryimage{
+    height: 56px;
+    width: 56px;
+    margin: 4px 0 0 4px;
+}
+#galleryimage:hover{ 
+    -o-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+}
+/*Javascript*/
 .box{
     float: left;
 }
@@ -63,31 +80,22 @@
     left: 350px;
     top: 50px;
     border-radius: 5px;
-
 }
-#galleryicon{
-    height: 64px;
-    width: 64px;
-    
-}
-#galleryimage{
-    height: 56px;
-    width: 56px;
-    margin: 4px 0 0 4px;
-}
-#galleryimage:hover{ transform: scale(1.05); }
 
 .box{
-    width: 80px;
-    height: 55px;
     border: 1px solid black;
     border-radius: 3px;
     margin: 2px 2px 2px 2px;
     text-align: center;
-    
+
 }
 .thumb{
-   margin-top: 2px;
+    /*margin-top: 15%;*/
+    display: block;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    margin: 0 auto 0 auto;
+
 }
 #closeicon{
     width: 18px;
@@ -124,5 +132,3 @@
     float: left;
     margin: 2px 0 0 3px;
 }
-
-

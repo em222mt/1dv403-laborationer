@@ -3,7 +3,7 @@
 var Project = {
     //Array för bilder
     pics: [],
-    //Sparade DOM-anrop
+    //Sparade element
     open: false,
     desktop:        0,
     gallery:        0,
@@ -92,9 +92,28 @@ var Project = {
         xhr.onreadystatechange = function(){
             if (xhr.readyState === 4) {
                 if (xhr.status == 200) {
-                    console.log(xhr.responseText);
+                    var maxW = 0;
+                    var maxH = 0;
+                    // console.log(xhr.responseText);
                     Project.pics = JSON.parse(xhr.responseText);
                     //Skapar struktur för thumbnails
+                    Project.pics.forEach(function(pic){
+                        if (pic.thumbWidth > maxW) {
+                            maxW = pic.thumbWidth;
+                        }
+                        else{
+                            maxW = maxW;
+                        }
+                        if (pic.thumbHeight > maxH) {
+                            maxH = pic.thumbHeight;
+                        }
+                        else{
+                            maxH = maxH;
+                        }
+                        // console.log(maxW);
+                        console.log(maxH);
+
+                    });
                     Project.pics.forEach(function(pic){
                         Project.box = document.createElement("div");
                         Project.box.setAttribute("class", "box");
@@ -102,22 +121,27 @@ var Project = {
                         Project.thumbNail = document.createElement("img");
                         Project.thumbNail.setAttribute("src", pic.thumbURL);
                         Project.thumbNail.setAttribute("class", "thumb");
-                        Project.thumbNail.style.maxWidth = pic.thumbWidth;
-                        Project.thumbNail.style.maxHeight = pic.thumbHeight;
                         
+                        Project.thumbNail.style.maxWidth = maxW;
+                        Project.thumbNail.style.maxHeight = maxH;
+
+                        Project.box.style.width = maxW + 20 + "px";
+                        Project.box.style.height = maxH + 20 + "px";
+
                         Project.thumbLink = document.createElement("a");
                         Project.thumbLink.setAttribute("href", "#");
                         Project.thumbLink.setAttribute("class", "thumblink");
                         
                         Project.thumbLink.appendChild(Project.thumbNail);
                         Project.box.appendChild(Project.thumbLink);
-                        
                         Project.gallery.appendChild(Project.box);
+                        
                         //Sätter bakgrundsbilden till den klickade thumben.
                         Project.thumbLink.onclick = function(){
                             Project.setBackground(pic.URL);
                         };
                     });
+
                     //Tar bort laddningsbar
                     Project.removeNodes(Project.bottomBar);
                 }
